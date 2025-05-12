@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoklama Uygulaması</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Yoklama Listesi</h1>
+        <label for="class-select">Sınıf Seçiniz:</label>
+        <select id="class-select">
+            <option value="9. sınıf">9. sınıf</option>
+            <option value="10. sınıf">10. sınıf</option>
+            <option value="11 TM">11 TM</option>
+            <option value="11 MF">11 MF</option>
+            <option value="12 TM">12 TM</option>
+            <option value="12 MF">12 MF</option>
+        </select>
+        <form id="attendance-form">
+            <ul id="name-list">
+                <!-- İsimler buraya JavaScript ile eklenecek -->
+            </ul>
+            <button type="button" onclick="submitAttendance()">Yoklamayı Gönder</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
