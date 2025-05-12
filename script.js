@@ -1,132 +1,185 @@
-// Öğrenci listeleri
-const participants = {
-    "9. sınıf": [
-        "Ahmet Hilmi Yumrutaş",
-        "Yusuf Emin Aydın",
-        "Ahmet Sevban Arslan",
-        "Sadık Talha Kanat",
-        "Ali Safa Çiftçi",
-        "Mustafa Selim Pamukoğlu",
-        "Mehmet Eren Doğan",
-        "Ahmed Faruk Özşahin",
-        "Mehmet Eymen Karaboya",
-        "Eymen İnce",
-        "Talha Tunahan Alpaslan",
-        "Ali Kerem Çevik",
-        "Selim Emre Aksoy",
-        "Mehmet Fatih Soyçeken",
-        "Hasan Hüseyin Soyçeken"
-    ],
-    "10. sınıf": [
-        "Yasin Talha Gömeç",
-        "Ahmet Hakan Sarıca",
-        "Halil Tarık Dönmez",
-        "Yiğit Çalışkan",
-        "Mehmet Çitil",
-        "Ahmet Faruk Çubuk",
-        "Ömer Faruk Aydın",
-        "Rüçhan Arif Bağcı",
-        "Mehmet Eymen Kök",
-        "Hasan Ali Öğüt",
-        "Ahmet Kemal Selçuk",
-        "Mehmedhan Demirel",
-        "Ahmet Arif Aydoğan",
-        "Akif Emre Karaca",
-        "Ahmet Selim Aydın"
-    ],
-    "11 TM": [
-        "Buğrahan Yılmaz",
-        "Mustafa Parlak",
-        "Ahmet Sevban Çalı",
-        "Ahmet Selim Baloğlu",
-        "Yasin Başer",
-        "Ramazan Tunahan Başak",
-        "Faruk Selman Sekmen",
-        "Adem Tunahan Düzgün",
-        "Mehmet Arif Kiday"
-    ],
-    "11 MF": [
-        "Abdullah Faruk Özsoy",
-        "Mehmedhan Özcan",
-        "Cafer Furkan Yıldırım",
-        "Mehmet Hakan Ay",
-        "Abdul Kerim Kurt",
-        "Yusuf Selim Akın",
-        "Selman Fatih Cebeci",
-        "Sıtkı Eren Erdoğan",
-        "Bayram Salih Durmaz",
-        "Hilmi Metin Kayır",
-        "Osman Taha Koç",
-        "Enes Irfan Eser"
-    ],
-    "12 TM": [
-        "Mehmet Hilmi Aydoğan",
-        "Ahmed Arif Küçük",
-        "Emirhan Gömeç",
-        "Yusuf Eren Gümüş",
-        "Kemal Selim Temiz"
-    ],
-    "12 MF": [
-        "Emirhan Tiryaki",
-        "Umut Buğra Türk",
-        "Ahmet Kemal Özdemir",
-        "Ahmet Özcan Atakul",
-        "Hilmi Tunahan Kaytez",
-        "Ömer Faruk Yakut",
-        "Emirhan Eren",
-        "Mehmet Emre Karakuş",
-        "Ahmet Semih Birtane",
-        "Bedirhan Efe Altınsoy"
-    ]
+const participants = [
+    { name: "Ahmet Arif Küçük", class: "12" },
+    { name: "Ahmet Kemal Özdemir", class: "12" },
+    { name: "Ahmet Özcan Atakul", class: "12" },
+    { name: "Ahmet Semih Birtane", class: "12" },
+    { name: "Bedirhan Efe Altınsoy", class: "12" },
+    { name: "Emirhan Eren", class: "12" },
+    { name: "Emirhan Tiryaki", class: "12" },
+    { name: "Hilmi Tunahan Kaytez", class: "12" },
+    { name: "Kemal Selim Temiz", class: "12" },
+    { name: "Mehmet Emre Karakuş", class: "12" },
+    { name: "Mehmet Hilmi Aydoğan", class: "12" },
+    { name: "Ömer Faruk Yakut", class: "12" },
+    { name: "Umut Buğra Türk", class: "12" },
+    { name: "Yusuf Eren Gümüş", class: "12" },
+    { name: "Abdul Kerim Kurt", class: "12" },
+    { name: "Adem Tunahan Düzgün", class: "11" },
+    { name: "Ahmet Selim Baloğlu", class: "11" },
+    { name: "Ahmet Sevban Çalı", class: "11" },
+    { name: "Bayram Salih Durmaz", class: "11" },
+    { name: "Cafer Furkan Yıldırım", class: "11" },
+    { name: "Faruk Selman Sekmen", class: "11" },
+    { name: "Hilmi Metin Kayır", class: "11" },
+    { name: "Mehmet Arif Kiday", class: "11" },
+    { name: "Mehmet Hakan Ay", class: "11" },
+    { name: "Mustafa Parlak", class: "11" },
+    { name: "Osman Taha Koç", class: "11" },
+    { name: "Selman Fatih Cebeci", class: "11" },
+    { name: "Sıtkı Eren Erdoğan", class: "11" },
+    { name: "Tunahan Başak", class: "11" },
+    { name: "Yasin Başer", class: "11" },
+    { name: "Yusuf Selim Akın", class: "11" },
+    { name: "Buğrahan Yılmaz", class: "11" },
+    { name: "Enes İrfan Eser", class: "11" },
+    { name: "Abdullah Faruk Özsoy", class: "11" },
+    { name: "Mehmedhan Özcan", class: "11" },
+    { name: "Ahmet Arif Aydoğan", class: "11" },
+    { name: "Ahmet Faruk Çubuk", class: "10" },
+    { name: "Ahmet Hakan Sarıca", class: "10" },
+    { name: "Ahmet Kemal Selçuk", class: "10" },
+    { name: "Ahmet Selim Aydın", class: "10" },
+    { name: "Akif Emre Karaca", class: "10" },
+    { name: "Halil Tarık Dönmez", class: "10" },
+    { name: "Hasan Ali Öğüt", class: "10" },
+    { name: "Mehmedhan Demirel", class: "10" },
+    { name: "Mehmet Çitil", class: "10" },
+    { name: "Mehmet Eymen Kök", class: "10" },
+    { name: "Ömer Faruk Aydın", class: "10" },
+    { name: "Rüçhan Arif Bağcı", class: "10" },
+    { name: "Yasin Talha Gömeç", class: "10" },
+    { name: "Yiğit Çalışkan", class: "10" },
+    { name: "Ahmet Faruk Özşahin", class: "10" },
+    { name: "Ahmet Hilmi Yumrutaş", class: "9" },
+    { name: "Ahmet Sevban Arslan", class: "9" },
+    { name: "Ali Kerem Çevik", class: "9" },
+    { name: "Ali Safa Çiftçi", class: "9" },
+    { name: "Hasan Hüseyin Soyçeken", class: "9" },
+    { name: "Mehmet Eren Doğan", class: "9" },
+    { name: "Mehmet Eymen Karaboya", class: "9" },
+    { name: "Mehmet Fatih Soyçeken", class: "9" },
+    { name: "Mustafa Selim Pamukoğlu", class: "9" },
+    { name: "Sadık Talha Kanat", class: "9" },
+    { name: "Selim Emre Aksoy", class: "9" },
+    { name: "Talha Tunahan Alpaslan", class: "9" },
+    { name: "Yusuf Emin Aydın", class: "9" },
+    { name: "Eymen İnce", class: "9" }
+];
+
+
+const classColors = {
+    "12": "#d1e7dd",
+    "11": "#cff4fc",
+    "10": "#e0bbff",
+    "9": "#d6d8db"
 };
 
 window.onload = function () {
-    const classSelect = document.getElementById("class-select");
     const list = document.getElementById("name-list");
+    participants.forEach(({ name, class: className }) => {
+        const id = name.toLowerCase().replace(/\s+/g, '-')
+            .replace(/ç/g, 'c').replace(/ğ/g, 'g')
+            .replace(/ı/g, 'i').replace(/ö/g, 'o')
+            .replace(/ş/g, 's').replace(/ü/g, 'u');
 
-    classSelect.addEventListener("change", function () {
-        loadClassList(classSelect.value);
-    });
-
-    loadClassList(classSelect.value); // İlk açıldığında 9. sınıfı yükle
-};
-
-// Sınıfa göre öğrencileri yükleme
-function loadClassList(className) {
-    const list = document.getElementById("name-list");
-    list.innerHTML = ""; // Önceki listeyi temizle
-
-    const selectedClass = participants[className];
-    selectedClass.forEach(name => {
-        const id = name.toLowerCase().replace(/\s+/g, '-').replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u');
         const li = document.createElement("li");
-        li.innerHTML = `<input type="checkbox" id="${id}"> ${name}`;
+        li.style.backgroundColor = classColors[className] || "#f0f0f0";
+        li.innerHTML = `<input type="checkbox" id="${id}"> <strong>${name}</strong> - <em>${className}</em>`;
         list.appendChild(li);
     });
-}
+};
 
-// Yoklamayı gönderme
 function submitAttendance() {
-    let present = [];
-    let absent = [];
+    const absent = [];
+    participants.forEach(({ name, class: className }) => {
+        const id = name.toLowerCase().replace(/\s+/g, '-')
+            .replace(/ç/g, 'c').replace(/ğ/g, 'g')
+            .replace(/ı/g, 'i').replace(/ö/g, 'o')
+            .replace(/ş/g, 's').replace(/ü/g, 'u');
 
-    // Katılımcıları ve katılmayanları ayır
-    for (let className in participants) {
-        const selectedClass = participants[className];
-        selectedClass.forEach(name => {
-            const id = name.toLowerCase().replace(/\s+/g, '-').replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u');
-            const checkbox = document.getElementById(id);
-            if (checkbox.checked) {
-                present.push(name);
-            } else {
-                absent.push(name);
-            }
-        });
-    }
+        const checkbox = document.getElementById(id);
+        if (!checkbox.checked) {
+            absent.push({ name, class: className });
+        }
+    });
 
     const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = `
-        <h3>Katılmayanlar (${absent.length} kişi):</h3>
-        <ul>${absent.map(name => `<li>${name}</li>`).join("")}</ul>
-    `;
+    resultDiv.innerHTML = `<h2>Katılmayanlar (${absent.length} kişi):</h2><ul>${absent.map(s => `<li>${s.name} (${s.class})</li>`).join('')}</ul>`;
+
+    // CSV Export butonunu göster
+    const csvBtn = document.getElementById("csv-btn");
+    csvBtn.style.display = absent.length > 0 ? "block" : "none";
+
+    // CSV veri oluştur
+    const csvRows = [["Ad Soyad", "Sınıf"]];
+    absent.forEach(s => csvRows.push([s.name, s.class]));
+
+    const csvContent = csvRows.map(e => e.join(",")).join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    csvBtn.href = url;
+    csvBtn.download = "katilmayanlar.csv";
+}
+
+
+function generateSummary(absentList) {
+    const summary = {};
+    absentList.forEach(s => {
+        if (!summary[s.class]) summary[s.class] = 0;
+        summary[s.class]++;
+    });
+
+    const summaryTable = document.getElementById("summary");
+    summaryTable.innerHTML = "<h3>Sınıf Özeti</h3>";
+
+    const table = document.createElement("table");
+    table.className = "summary-table";
+
+    const header = document.createElement("tr");
+    header.innerHTML = "<th>Sınıf</th><th>Sayı</th>";
+    table.appendChild(header);
+
+    let total = 0;
+    for (const cls in summary) {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${cls}</td><td>${summary[cls]}</td>`;
+        table.appendChild(row);
+        total += summary[cls];
+    }
+
+    const totalRow = document.createElement("tr");
+    totalRow.innerHTML = `<td><strong>Toplam</strong></td><td><strong>${total}</strong></td>`;
+    table.appendChild(totalRow);
+
+    summaryTable.appendChild(table);
+}
+
+function submitAttendance() {
+    const absent = [];
+    participants.forEach(({ name, class: className }) => {
+        const id = name.toLowerCase().replace(/\s+/g, '-')
+            .replace(/ç/g, 'c').replace(/ğ/g, 'g')
+            .replace(/ı/g, 'i').replace(/ö/g, 'o')
+            .replace(/ş/g, 's').replace(/ü/g, 'u');
+        const checkbox = document.getElementById(id);
+        if (!checkbox.checked) {
+            absent.push({ name, class: className });
+        }
+    });
+
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = `<h2>Katılmayanlar (${absent.length} kişi):</h2><ul>${absent.map(s => `<li>${s.name} (${s.class})</li>`).join('')}</ul>`;
+
+    const csvBtn = document.getElementById("csv-btn");
+    csvBtn.style.display = absent.length > 0 ? "block" : "none";
+
+    const csvRows = [["Ad Soyad", "Sınıf"]];
+    absent.forEach(s => csvRows.push([s.name, s.class]));
+    const csvContent = csvRows.map(e => e.join(",")).join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    csvBtn.href = url;
+    csvBtn.download = "katilmayanlar.csv";
+
+    generateSummary(absent);
 }
