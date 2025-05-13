@@ -126,3 +126,34 @@ button:hover {
     padding: 6px 10px;
     text-align: center;
 }
+
+
+#summary {
+    position: fixed;
+    top: 90px;
+    right: 10px;
+    width: 220px;
+    background: white;
+    padding: 10px 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 999;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.summary-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.summary-table th,
+.summary-table td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: center;
+}
