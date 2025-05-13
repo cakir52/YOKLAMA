@@ -1,14 +1,14 @@
 
 function submitAttendance() {
-    const absent = [{ name: "Deneme Öğrenci 1" }, { name: "Deneme Öğrenci 2" }];
+    const absent = [{ name: "Ali" }, { name: "Veli" }]; // örnek veri
 
-    fetch("https://script.google.com/macros/s/AKfycbx7EpVDymKZaAE4U_LW5UOfvzRrb4lzspwFF5OSf0ipPbOFhXKiljxa_GE-sg8GDTf4/exec", {
+    const formData = new FormData();
+    formData.append("entry.1447778846", absent.map(a => a.name).join(", "));
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSfOr1JtxOBYCNduYv9OVIK8qr9bMDAPX8ozsfqJUpAYXH7VBA/formResponse", {
         method: "POST",
-        body: JSON.stringify({ absent: absent.map(a => a.name) }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => console.log("Google Sheets'e gönderildi:", res.status))
-    .catch(err => console.error("Gönderim hatası:", err));
+        mode: "no-cors",
+        body: formData
+    }).then(() => console.log("Form gönderildi"))
+      .catch(err => console.error("Form gönderim hatası:", err));
 }
