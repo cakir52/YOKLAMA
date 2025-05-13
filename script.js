@@ -116,6 +116,17 @@ function submitAttendance() {
     csvBtn.download = "katilmayanlar.csv";
 
     generateSummary(absent);
+    // Google Sheets'e veri gönder
+    fetch("https://script.google.com/macros/s/AKfycbypCHKvFhzi9g4xiSJFnSwUrNjKB9wrKVSLUKwOlPTo85FdX589l5tzTcBZ6-guVter/exec", {
+        method: "POST",
+        body: JSON.stringify({ absent: absent.map(a => a.name) }),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => console.log("Google Sheets'e gönderildi:", res.status))
+    .catch(err => console.error("Gönderim hatası:", err));
+    
 }
 
 function generateSummary(absentList) {
