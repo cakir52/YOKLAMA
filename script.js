@@ -1,8 +1,8 @@
 
 function submitAttendance() {
-    const absent = [{ name: "Ahmet Öğrenci" }, { name: "Ayşe Öğrenci" }];
+    const absent = [{ name: "Deneme Öğrenci 1" }, { name: "Deneme Öğrenci 2" }];
 
-    fetch("https://script.google.com/macros/s/AKfycbyt4_H-p8Jl4XtjGGvyUAw2oESv0zYU9yRp9oVhDjWDamO9U-NYB1gxpESKsq_cU7Wb/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbx7EpVDymKZaAE4U_LW5UOfvzRrb4lzspwFF5OSf0ipPbOFhXKiljxa_GE-sg8GDTf4/exec", {
         method: "POST",
         body: JSON.stringify({ absent: absent.map(a => a.name) }),
         headers: {
