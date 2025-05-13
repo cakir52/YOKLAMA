@@ -13,7 +13,7 @@ const participants = [
     { name: "Ömer Faruk Yakut", class: "12" },
     { name: "Umut Buğra Türk", class: "12" },
     { name: "Yusuf Eren Gümüş", class: "12" },
-    { name: "Abdul Kerim Kurt", class: "12" },
+    { name: "Abdul Kerim Kurt", class: "11" },
     { name: "Adem Tunahan Düzgün", class: "11" },
     { name: "Ahmet Selim Baloğlu", class: "11" },
     { name: "Ahmet Sevban Çalı", class: "11" },
@@ -34,7 +34,7 @@ const participants = [
     { name: "Enes İrfan Eser", class: "11" },
     { name: "Abdullah Faruk Özsoy", class: "11" },
     { name: "Mehmedhan Özcan", class: "11" },
-    { name: "Ahmet Arif Aydoğan", class: "11" },
+    { name: "Ahmet Arif Aydoğan", class: "10" },
     { name: "Ahmet Faruk Çubuk", class: "10" },
     { name: "Ahmet Hakan Sarıca", class: "10" },
     { name: "Ahmet Kemal Selçuk", class: "10" },
@@ -49,7 +49,7 @@ const participants = [
     { name: "Rüçhan Arif Bağcı", class: "10" },
     { name: "Yasin Talha Gömeç", class: "10" },
     { name: "Yiğit Çalışkan", class: "10" },
-    { name: "Ahmet Faruk Özşahin", class: "10" },
+    { name: "Ahmet Faruk Özşahin", class: "9" },
     { name: "Ahmet Hilmi Yumrutaş", class: "9" },
     { name: "Ahmet Sevban Arslan", class: "9" },
     { name: "Ali Kerem Çevik", class: "9" },
@@ -81,7 +81,6 @@ window.onload = function () {
             .replace(/ç/g, 'c').replace(/ğ/g, 'g')
             .replace(/ı/g, 'i').replace(/ö/g, 'o')
             .replace(/ş/g, 's').replace(/ü/g, 'u');
-
         const li = document.createElement("li");
         li.style.backgroundColor = classColors[className] || "#f0f0f0";
         li.innerHTML = `<input type="checkbox" id="${id}"> <strong>${name}</strong> - <em>${className}</em>`;
@@ -96,7 +95,6 @@ function submitAttendance() {
             .replace(/ç/g, 'c').replace(/ğ/g, 'g')
             .replace(/ı/g, 'i').replace(/ö/g, 'o')
             .replace(/ş/g, 's').replace(/ü/g, 'u');
-
         const checkbox = document.getElementById(id);
         if (!checkbox.checked) {
             absent.push({ name, class: className });
@@ -106,21 +104,19 @@ function submitAttendance() {
     const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = `<h2>Katılmayanlar (${absent.length} kişi):</h2><ul>${absent.map(s => `<li>${s.name} (${s.class})</li>`).join('')}</ul>`;
 
-    // CSV Export butonunu göster
     const csvBtn = document.getElementById("csv-btn");
     csvBtn.style.display = absent.length > 0 ? "block" : "none";
 
-    // CSV veri oluştur
     const csvRows = [["Ad Soyad", "Sınıf"]];
     absent.forEach(s => csvRows.push([s.name, s.class]));
-
     const csvContent = csvRows.map(e => e.join(",")).join("\n");
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     csvBtn.href = url;
     csvBtn.download = "katilmayanlar.csv";
-}
 
+    generateSummary(absent);
+}
 
 function generateSummary(absentList) {
     const summary = {};
@@ -152,34 +148,4 @@ function generateSummary(absentList) {
     table.appendChild(totalRow);
 
     summaryTable.appendChild(table);
-}
-
-function submitAttendance() {
-    const absent = [];
-    participants.forEach(({ name, class: className }) => {
-        const id = name.toLowerCase().replace(/\s+/g, '-')
-            .replace(/ç/g, 'c').replace(/ğ/g, 'g')
-            .replace(/ı/g, 'i').replace(/ö/g, 'o')
-            .replace(/ş/g, 's').replace(/ü/g, 'u');
-        const checkbox = document.getElementById(id);
-        if (!checkbox.checked) {
-            absent.push({ name, class: className });
-        }
-    });
-
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = `<h2>Katılmayanlar (${absent.length} kişi):</h2><ul>${absent.map(s => `<li>${s.name} (${s.class})</li>`).join('')}</ul>`;
-
-    const csvBtn = document.getElementById("csv-btn");
-    csvBtn.style.display = absent.length > 0 ? "block" : "none";
-
-    const csvRows = [["Ad Soyad", "Sınıf"]];
-    absent.forEach(s => csvRows.push([s.name, s.class]));
-    const csvContent = csvRows.map(e => e.join(",")).join("\n");
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    csvBtn.href = url;
-    csvBtn.download = "katilmayanlar.csv";
-
-    generateSummary(absent);
 }
