@@ -1,14 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Yoklama</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoklama Sistemi</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Yoklama</h1>
-    <button onclick="submitAttendance()">Gönder</button>
+    <h1>Yoklama Sistemi</h1>
+    <form id="yoklamaForm">
+<fieldset style="background-color:#ffdddd"><legend>12-MF</legend><label><input type="checkbox" id="emi̇rhan-ti̇ryaki̇" checked> EMİRHAN TİRYAKİ</label><br><label><input type="checkbox" id="umut-buğra-türk" checked> UMUT BUĞRA TÜRK</label><br><label><input type="checkbox" id="ahmet-kemal-özdemi̇r" checked> AHMET KEMAL ÖZDEMİR</label><br></fieldset><br><fieldset style="background-color:#ddffdd"><legend>12-TM</legend><label><input type="checkbox" id="mehmet-hi̇lmi̇-aydoğan" checked> MEHMET HİLMİ AYDOĞAN</label><br><label><input type="checkbox" id="ahmed-ari̇f-küçük" checked> AHMED ARİF KÜÇÜK</label><br><label><input type="checkbox" id="emi̇rhan-gömeç" checked> EMİRHAN GÖMEÇ</label><br></fieldset><br><fieldset style="background-color:#ddeeff"><legend>11-MF</legend><label><input type="checkbox" id="abdullah-faruk-özsoy" checked> ABDULLAH FARUK ÖZSOY</label><br><label><input type="checkbox" id="mehmethan-özcan" checked> MEHMETHAN ÖZCAN</label><br></fieldset><br><fieldset style="background-color:#ffffcc"><legend>11-TM</legend><label><input type="checkbox" id="buğrahan-yilmaz" checked> BUĞRAHAN YILMAZ</label><br><label><input type="checkbox" id="mustafa-parlak" checked> MUSTAFA PARLAK</label><br></fieldset><br><fieldset style="background-color:#e0ccff"><legend>10</legend><label><input type="checkbox" id="yasi̇n-talha-gömeç" checked> YASİN TALHA GÖMEÇ</label><br><label><input type="checkbox" id="ahmet-hakan-sarica" checked> AHMET HAKAN SARICA</label><br></fieldset><br><fieldset style="background-color:#ffddee"><legend>9</legend><label><input type="checkbox" id="ahmet-hi̇lmi̇-yumrutaş" checked> AHMET HİLMİ YUMRUTAŞ</label><br><label><input type="checkbox" id="yusuf-emi̇n-aydin" checked> YUSUF EMİN AYDIN</label><br></fieldset><br>
+    <button type="button" onclick="submitAttendance()">Gönder</button>
+    </form>
     <script src="script.js"></script>
 </body>
 </html>
