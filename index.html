@@ -14,4 +14,25 @@
     <div id="summary" style="margin-top: 40px;"></div>
     <script src="script.js"></script>
 </body>
-</html>
+</html><input type="text" id="name" placeholder="Ad Soyad" />
+<button onclick="submitYoklama()">Yoklama Gönder</button>
+
+<script>
+function submitYoklama() {
+  const name = document.getElementById("name").value;
+
+  if (!name.trim()) {
+    alert("Lütfen ad soyad girin.");
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbwoLGT2vXo3Vd-JiA-_wW4rJTatPjf2oafWnaT8EtXpwdPWiZqr8OT7HBpwOxLsanUW/exec", { // 👈 kendi Web App URL’inizi buraya yazın
+    method: "POST",
+    body: new URLSearchParams({ name })
+  })
+  .then(response => response.text())
+  .then(data => alert("Yoklama alındı!"))
+  .catch(err => alert("Hata oluştu: " + err));
+}
+</script>
+
