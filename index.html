@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Yoklama Sistemi</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, button { padding: 10px; margin: 5px 0; font-size: 16px; }
+  </style>
 </head>
 <body>
-  <h1>Yoklama</h1>
+  <h1>Yoklama Sistemi</h1>
 
-  <input type="text" id="name" placeholder="Ad Soyad" />
+  <input type="text" id="name" placeholder="Ad Soyad">
   <button onclick="submitYoklama()">Yoklama Gönder</button>
 
-  <div id="result"></div>
+  <div id="result" style="margin-top: 20px;"></div>
 
   <script>
     function submitYoklama() {
@@ -28,20 +32,15 @@
         },
         body: JSON.stringify({ name })
       })
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
-        if (data.result === "success") {
-          alert("Yoklama alındı!");
-        } else {
-          alert("Sunucudan beklenmeyen yanıt: " + JSON.stringify(data));
-        }
+        document.getElementById("result").innerText = "Yoklama başarıyla alındı.";
       })
       .catch(err => {
-        alert("Hata oluştu: " + err.message);
         console.error(err);
+        alert("Hata oluştu: " + err.message);
       });
     }
   </script>
 </body>
 </html>
-
