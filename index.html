@@ -1,38 +1,47 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Yoklama Sistemi</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Yoklama Sistemi</title>
 </head>
 <body>
-    <h1>Yoklama</h1>
-    <ul id="name-list"></ul>
-    <button onclick="submitAttendance()">Gönder</button>
-    <div id="result"></div>
-    <a id="csv-btn" style="display:none; margin-top: 20px;" class="export-button">Katılmayanları Excel (CSV) Olarak İndir</a>
-    <div id="summary" style="margin-top: 40px;"></div>
-    <script src="script.js"></script>
+  <h1>Yoklama</h1>
+
+  <input type="text" id="name" placeholder="Ad Soyad" />
+  <button onclick="submitYoklama()">Yoklama Gönder</button>
+
+  <div id="result"></div>
+
+  <script>
+    function submitYoklama() {
+      const name = document.getElementById("name").value.trim();
+
+      if (!name) {
+        alert("Lütfen ad soyad girin.");
+        return;
+      }
+
+      fetch("https://script.google.com/macros/s/AKfycbwoLGT2vXo3Vd-JiA-_wW4rJTatPjf2oafWnaT8EtXpwdPWiZqr8OT7HBpwOxLsanUW/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === "success") {
+          alert("Yoklama alındı!");
+        } else {
+          alert("Sunucudan beklenmeyen yanıt: " + JSON.stringify(data));
+        }
+      })
+      .catch(err => {
+        alert("Hata oluştu: " + err.message);
+        console.error(err);
+      });
+    }
+  </script>
 </body>
-</html><input type="text" id="name" placeholder="Ad Soyad" />
-<button onclick="submitYoklama()">Yoklama Gönder</button>
-
-<script>
-function submitYoklama() {
-  const name = document.getElementById("name").value;
-
-  if (!name.trim()) {
-    alert("Lütfen ad soyad girin.");
-    return;
-  }
-
-  fetch("https://script.google.com/macros/s/AKfycbwoLGT2vXo3Vd-JiA-_wW4rJTatPjf2oafWnaT8EtXpwdPWiZqr8OT7HBpwOxLsanUW/exec", { // 👈 kendi Web App URL’inizi buraya yazın
-    method: "POST",
-    body: new URLSearchParams({ name })
-  })
-  .then(response => response.text())
-  .then(data => alert("Yoklama alındı!"))
-  .catch(err => alert("Hata oluştu: " + err));
-}
-</script>
+</html>
 
