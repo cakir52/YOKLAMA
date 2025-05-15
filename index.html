@@ -1,62 +1,82 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gelişmiş Yoklama Sistemi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yoklama Sistemi + Öğretmen Paneli</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; padding: 1rem; background-color: #f0f0f0; }
-    h1 { font-size: 1.5rem; margin-bottom: 1rem; text-align: center; }
-    #name-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
-    .name-button {
-      flex: 1 1 45%; max-width: 45%; padding: 0.75rem;
-      margin: 0.25rem; font-size: 1rem;
-      border: none; border-radius: 0.5rem;
-      background-color: #007BFF; color: #fff; cursor: pointer;
+    body { font-family: sans-serif; padding: 20px; background: #f9f9f9; }
+    h1, h2 { text-align: center; }
+    .student { margin: 5px 0; }
+    button { margin-top: 20px; padding: 10px 20px; display: block; margin-left: auto; margin-right: auto; }
+    .hidden { display: none; }
+    nav { text-align: center; margin-bottom: 20px; }
+    nav button { margin: 0 10px; padding: 8px 16px; }
+    section { display: none; }
+    section.active { display: block; }
+    iframe { width: 100%; height: 500px; border: 1px solid #ccc; }
+  
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
     }
-    .name-button.disabled { background-color: #aaa; cursor: default; }
-    #count { margin-top: 1rem; text-align: center; font-weight: bold; }
-    @media (max-width: 480px) {
-      .name-button { flex: 1 1 100%; max-width: 100%; font-size: 0.9rem; padding: 0.5rem; }
-      h1 { font-size: 1.25rem; }
-      #count { font-size: 0.9rem; }
+    .student-card {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.05);
     }
-  </style>
+    
+  .class-12 { background-color: #ffe5e5; }
+  .class-11 { background-color: #fff0cc; }
+  .class-10 { background-color: #e6ffe6; }
+  .class-9  { background-color: #e5f0ff; }
+  .animated-box {
+    animation: fadeInSlide 0.5s ease-out forwards;
+    background: #ffffff;
+    border: 2px dashed #4caf50;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  }
+  @keyframes fadeInSlide {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+    
 </head>
 <body>
   <h1>Yoklama Sistemi</h1>
+  <nav>
+    <button onclick="showTab('yoklama')">📋 Yoklama Al</button>
+    <button onclick="showTab('panel')">🧑‍🏫 Öğretmen Paneli</button>
+  </nav>
 
-  <input type="text" id="name" placeholder="Ad Soyad">
-  <button onclick="submitYoklama()">Yoklama Gönder</button>
+  <section id="yoklama" class="active">
+    <div id="student-list"></div>
+    <button onclick="submitAttendance()">Yoklamayı Gönder</button>
+    <a id="csv-btn" class="hidden" download="katilmayanlar.csv">Katılmayanları Excel (CSV) olarak indir</a>
+    <div id="summary" style="margin-top: 30px;"></div>
+  </section>
 
-  <div id="result" style="margin-top: 20px;"></div>
+  <section id="panel">
+    <h2>Öğretmen Paneli</h2>
+    <iframe src="https://docs.google.com/spreadsheets/d/1tmDw_Nase1bL-mw4HfXsyVAFDbPtxAdHlsYSP3ncYaw/edit?usp=sharing"></iframe>
+  </section>
 
+  <script src="script.js"></script>
   <script>
-    function submitYoklama() {
-      const name = document.getElementById("name").value.trim();
-
-      if (!name) {
-        alert("Lütfen ad soyad girin.");
-        return;
-      }
-
-      fetch("https://script.google.com/macros/s/AKfycby6QZn3sEVRrU0xg72cGTlstf2OyYvU69BK9tWNq8QaUSK0HfIv2pbQUOM1mBYasUL4/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name })
-      })
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("result").innerText = "Yoklama başarıyla alındı.";
-      })
-      .catch(err => {
-        console.error(err);
-        alert("Hata oluştu: " + err.message);
-      });
+    function showTab(id) {
+      document.querySelectorAll('section').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      if (id === "yoklama") renderList();
     }
+    window.onload = renderList;
   </script>
 </body>
 </html>
