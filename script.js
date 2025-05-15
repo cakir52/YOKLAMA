@@ -14,9 +14,9 @@ const students = [
   { name: "Mehmet Arif Kiday", class: "11 TM" }, { name: "Mehmet Hakan Ay", class: "11 MF" },
   { name: "Mustafa Parlak", class: "11 TM" }, { name: "Osman Taha Koç", class: "11 MF" },
   { name: "Selman Fatih Cebeci", class: "11 MF" }, { name: "Sıtkı Eren Erdoğan", class: "11 MF" },
-  { name: "Tunahan Başak", class: "11 MF" },
-  { name: "Yasin Başer", class: "11 TM" }, { name: "Yusuf Selim Akın", class: "11 MF" },
-  { name: "Buğrahan Yılmaz", class: "11 MF" }, { name: "Enes İrfan Eser", class: "11 MF" },
+  { name: "Tunahan Başak", class: "11 MF" },{ name: "Yasin Başer", class: "11 TM" }, 
+  { name: "Yusuf Selim Akın", class: "11 MF" },{ name: "Buğrahan Yılmaz", class: "11 MF" }, 
+  { name: "Enes İrfan Eser", class: "11 MF" },
   { name: "Abdullah Faruk Özsoy", class: "11 MF" }, { name: "Mehmedhan Özcan", class: "11 MF" }
   { name: "Ahmet Arif Aydoğan", class: "10" }, { name: "Ahmet Faruk Çubuk", class: "10" },
   { name: "Ahmet Hakan Sarıca", class: "10" }, { name: "Ahmet Kemal Selçuk", class: "10" },
